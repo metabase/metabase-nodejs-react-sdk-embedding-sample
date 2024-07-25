@@ -1,4 +1,3 @@
-import './App.css';
 import { MetabaseProvider, InteractiveQuestion } from "@metabase/embedding-sdk-react";
 
 // Configuration
