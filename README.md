@@ -46,7 +46,7 @@ npm install
 ### Starting the server
 
 ```sh
-node index.js
+npm start
 ```
 
 ## Start the client
