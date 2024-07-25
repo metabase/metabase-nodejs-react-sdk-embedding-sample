@@ -14,9 +14,8 @@ METABASE_JWT_SHARED_SECRET= process.env.METABASE_JWT_SHARED_SECRET
 app.use(cors({ credentials: true })); //https://stackoverflow.com/a/66437447
 
 app.get("/sso/metabase", async (req, res) => {
-  console.log("/sso/metabase");
 
-  //CORS
+  //Avoid CORS issue when fetching token from front-end
   res.setHeader('Access-Control-Allow-Origin', req.header('origin') 
 || req.header('x-forwarded-host') || req.header('referer') || req.header('host'));
 
@@ -48,13 +47,13 @@ app.get("/sso/metabase", async (req, res) => {
     METABASE_JWT_SHARED_SECRET
   )
   const ssoUrl = `${METABASE_INSTANCE_URL}/auth/sso?token=true&jwt=${token}`
-  console.log('ssoUrl', ssoUrl);
+  console.log('Hitting MB SSO endpoint', ssoUrl);
 
   try {
     const response = await fetch(ssoUrl, { method: 'GET' })
     const token = await response.json()
 
-    console.log("token", token)
+    console.log("Received token", token)
     return res.status(200).json(token)
   } catch (error) {
     if (error instanceof Error) {
