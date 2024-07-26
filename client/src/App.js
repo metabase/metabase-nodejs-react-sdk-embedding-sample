@@ -55,10 +55,8 @@ function App() {
       <MetabaseProvider config={config} theme={theme}>
         <InteractiveQuestion questionId={questionId} />
       </MetabaseProvider>
-
     </div>
   );
-
 }
 
 export default App;
