@@ -11,13 +11,9 @@ app.get('/', (req, res) => {
 METABASE_INSTANCE_URL= process.env.METABASE_INSTANCE_URL
 METABASE_JWT_SHARED_SECRET= process.env.METABASE_JWT_SHARED_SECRET
 
-app.use(cors({ credentials: true })); //https://stackoverflow.com/a/66437447
+app.use(cors({ credentials: true, origin:true })); //https://stackoverflow.com/a/66437447
 
 app.get("/sso/metabase", async (req, res) => {
-
-  //Avoid CORS issue when fetching token from front-end
-  res.setHeader('Access-Control-Allow-Origin', req.header('origin') 
-|| req.header('x-forwarded-host') || req.header('referer') || req.header('host'));
 
   //const { user } = req.session;
   const user = {
