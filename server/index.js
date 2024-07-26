@@ -15,7 +15,10 @@ app.use(cors({ credentials: true, origin:true })); //https://stackoverflow.com/a
 
 app.get("/sso/metabase", async (req, res) => {
 
-  //const { user } = req.session;
+  // Usually, you would grab the user from the current session
+  // Here it is hardcoded for demonstration purposes
+  // Example:
+  // const { user } = req.session;
   const user = {
     email: "rene@example.com",
     firstName: "Rene",
