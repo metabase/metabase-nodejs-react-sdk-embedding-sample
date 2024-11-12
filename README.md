@@ -26,9 +26,15 @@ From any Metabase page, click on the **gear** icon in the upper right and select
 
 On the card that says **JWT**, click the **Setup** button.
 
-### JWT Identity provider URI
+### JWT identity provider URI
 
-In **JWT IDENTITY PROVIDER URI** field, paste  `localhost:9090/sso/metabase` (or substitute your Cloud URL for localhost).
+In the **JWT IDENTITY PROVIDER URI** field, paste  `localhost:9090/sso/metabase` (or substitute your Cloud URL for localhost).
+
+In your `.env` this address is set as:
+
+```
+VITE_AUTH_PROVIDER_URI="http://localhost:9090/sso/metabase"
+```
 
 ### String used by the JWT signing key
 
