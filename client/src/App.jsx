@@ -13,7 +13,7 @@ const config = defineMetabaseAuthConfig({
   authProviderUri: import.meta.env.VITE_AUTH_PROVIDER_URI,
 });
 
-const questionId = 14;
+const questionId = 24;
 
 const theme = defineMetabaseTheme({
   // Specify a font to use from the set of fonts supported by Metabase.
@@ -31,16 +31,16 @@ const theme = defineMetabaseTheme({
 
   // Match your application's color scheme
   colors: {
-    brand: "#d21238",
-    "text-primary": "#441616",
-    "text-secondary": "#8d1b01",
-    "text-tertiary": "#1d78f0",
-    background: "#f0dbdb",
-    "background-hover": "#e2e1e1",
-    border: "#3e0606",
-    filter: "#b54504",
-    summarize: "#3c680d",
-    shadow: "rgba(0,0,0,0.08)",
+    brand: "#2196F3",
+    "text-primary": "#2C3E50",
+    "text-secondary": "#607D8B",
+    "text-tertiary": "#78909C",
+    background: "#F5F7FA",
+    "background-hover": "#E3E8EF",
+    border: "#CFD8DC",
+    filter: "#4CAF50",
+    summarize: "#3F51B5",
+    shadow: "rgba(0,0,0,0.1)",
   },
 
   components: {
