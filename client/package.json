@@ -4,11 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "env-cmd -f ../.env vite",
-    "dev": "env-cmd -f ../.env vite",
-    "build": "env-cmd -f ../.env vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "vite",
+    "dev": "vite",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@metabase/embedding-sdk-react": "^0.52.9",
