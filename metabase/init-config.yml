@@ -1,0 +1,7 @@
+version: 1
+config:
+  users:
+    - first_name: Rene
+      last_name: Descartes
+      password: foobarbaz
+      email: rene@example.com
