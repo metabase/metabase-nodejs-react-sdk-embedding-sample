@@ -1,3 +1,5 @@
 #! /bin/bash
+echo "starting backend"
 npm run start --prefix ./server &
-npm run start --prefix ./client -- --host &
+echo "starting frontend"
+npm run start --prefix ./client -- --host
