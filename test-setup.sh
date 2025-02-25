@@ -1,5 +1,5 @@
 #! /bin/bash
-cp .env.sample .env
+cp .env.example .env
 
 npm ci --prefix ./client
 npm ci --prefix ./server
