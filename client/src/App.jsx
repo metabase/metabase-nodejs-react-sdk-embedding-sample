@@ -11,7 +11,7 @@ const config = defineEmbeddingSdkConfig({
   authProviderUri: import.meta.env.VITE_AUTH_PROVIDER_URI,
 });
 
-const questionId = 14;
+const questionId = 1330;
 
 const theme = defineEmbeddingSdkTheme({
   // Specify a font to use from the set of fonts supported by Metabase.
