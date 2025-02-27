@@ -5,10 +5,7 @@ services:
       MB_CONFIG_FILE_PATH: "./app/metabase/init-config.yml"
       MB_JETTY_PORT: "${MB_PORT}"
       MB_EDITION: "ee"
-      MB_EMBEDDING_APP_ORIGIN: "*"
-      MB_ENABLE_EMBEDDING: true
       MB_SITE_URL: "http://localhost:${MB_PORT}/"
-      MB_JWT_ENABLED: true
       MB_JWT_SHARED_SECRET: "${METABASE_JWT_SHARED_SECRET}"
       MB_SETUP_TOKEN: "${PREMIUM_EMBEDDING_TOKEN}"
       MB_PREMIUM_EMBEDDING_TOKEN: "${PREMIUM_EMBEDDING_TOKEN}"

@@ -5,3 +5,6 @@ config:
       last_name: Descartes
       password: foobarbaz
       email: rene@example.com
+  settings:
+    enable-embedding-sdk: true
+    jwt-enabled: true
