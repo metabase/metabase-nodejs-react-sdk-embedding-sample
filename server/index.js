@@ -8,8 +8,9 @@ app.get('/', (req, res) => {
   res.send('Hello from our server!')
 })
 
-METABASE_INSTANCE_URL= process.env.METABASE_INSTANCE_URL
-METABASE_JWT_SHARED_SECRET= process.env.METABASE_JWT_SHARED_SECRET
+const BACKEND_PORT = process.env.BACKEND_PORT
+const METABASE_INSTANCE_URL = process.env.METABASE_INSTANCE_URL
+const METABASE_JWT_SHARED_SECRET = process.env.METABASE_JWT_SHARED_SECRET
 
 app.use(cors({ credentials: true, origin:true })); //https://stackoverflow.com/a/66437447
 
@@ -23,7 +24,7 @@ app.get("/sso/metabase", async (req, res) => {
     email: "rene@example.com",
     firstName: "Rene",
     lastName: "Descartes",
-    group: "Customer"    
+    group: "Customer"
   }
 
   if (!user) {
@@ -65,6 +66,6 @@ app.get("/sso/metabase", async (req, res) => {
   }
 })
 
-app.listen(process.env.BACKEND_PORT, () => {
-  console.log(`server listening on port ${process.env.BACKEND_PORT}`)
+app.listen(BACKEND_PORT, () => {
+  console.log(`server listening on port ${BACKEND_PORT}`)
 })

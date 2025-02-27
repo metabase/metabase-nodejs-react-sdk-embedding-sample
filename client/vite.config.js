@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     // eslint-disable-next-line no-undef
-    port: process.env.PORT || 3100,
+    port: process.env.PORT
   },
 });

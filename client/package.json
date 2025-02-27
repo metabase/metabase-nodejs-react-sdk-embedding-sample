@@ -7,8 +7,8 @@
     "start": "env-cmd -f ../.env vite",
     "dev": "env-cmd -f ../.env vite",
     "build": "env-cmd -f ../.env vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "env-cmd -f ../.env vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@metabase/embedding-sdk-react": "^0.52.15",
