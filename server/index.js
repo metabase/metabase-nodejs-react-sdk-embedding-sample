@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
   res.send('Hello from our server!')
 })
 
-const BACKEND_PORT = process.env.BACKEND_PORT
+const AUTH_PROVIDER_PORT = process.env.AUTH_PROVIDER_PORT
 const METABASE_INSTANCE_URL = process.env.METABASE_INSTANCE_URL
 const METABASE_JWT_SHARED_SECRET = process.env.METABASE_JWT_SHARED_SECRET
 
@@ -66,6 +66,6 @@ app.get("/sso/metabase", async (req, res) => {
   }
 })
 
-app.listen(BACKEND_PORT, () => {
-  console.log(`server listening on port ${BACKEND_PORT}`)
+app.listen(AUTH_PROVIDER_PORT, () => {
+  console.log(`server listening on port ${AUTH_PROVIDER_PORT}`)
 })
