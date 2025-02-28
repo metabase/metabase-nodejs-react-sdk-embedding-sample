@@ -1,11 +1,11 @@
-FROM eclipse-temurin:21-jre-alpine
+FROM metabase/metabase-enterprise:v1.52.x
 
-ENV JAVA_TOOL_OPTIONS="-XX:UseSVE=0"
-
-RUN apk add -U curl && \
-    apk upgrade
-
-COPY ./local-dist/metabase.jar /app/
 COPY ./metabase /app/
+COPY ./local-dist /app/local-dist
 
-CMD ["java", "--add-opens", "java.base/java.nio=ALL-UNNAMED", "-jar", "./app/metabase.jar"]
+RUN if [ -f ./app/local-dist/metabase.jar ]; then \
+      echo "Local metabase.jar is found in ./app/local-dist, running it..."; \
+      cp ./app/local-dist/metabase.jar /app/metabase.jar; \
+    else \
+      echo "Local metabase.jar is not found in ./app/local-dist, skipping copy"; \
+    fi

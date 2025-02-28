@@ -11,8 +11,6 @@
     "start": "yarn docker:up",
     "docker:up": "docker compose --env-file .env.docker up",
     "docker:down": "docker compose --env-file .env.docker down --rmi all --volumes",
-    "docker:e2e:up": "docker compose --env-file .env.docker -f docker-compose.e2e.yml up",
-    "docker:e2e:down": "docker compose --env-file .env.docker -f docker-compose.e2e.yml down --rmi all --volumes",
     "cypress:open": "env-cmd -f .env.docker cypress open --config-file ./e2e/support/cypress.config.js --e2e",
     "cypress:run": "env-cmd -f .env.docker cypress run --config-file ./e2e/support/cypress.config.js"
   }
