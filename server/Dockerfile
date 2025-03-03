@@ -8,4 +8,4 @@ WORKDIR /app/server
 
 RUN npm ci
 
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]
