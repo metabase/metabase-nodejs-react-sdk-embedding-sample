@@ -2,7 +2,8 @@
 .env.docker
 .idea
 cypress
-local-dist
+local-dist/*
+!local-dist/.gitkeep
 node_modules
 client/node_modules
 server/node_modules
