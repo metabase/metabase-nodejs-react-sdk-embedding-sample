@@ -2,16 +2,9 @@
   "name": "metabase-nodejs-react-sdk-embedding-sample",
   "private": true,
   "version": "0.0.0",
-  "devDependencies": {
-    "@testing-library/cypress": "^10.0.3",
-    "cypress": "^14.0.3",
-    "env-cmd": "^10.1.0"
-  },
   "scripts": {
     "start": "npm run docker:up",
     "docker:up": "docker compose --env-file .env.docker up",
-    "docker:down": "docker compose --env-file .env.docker down --rmi all --volumes",
-    "cypress:open": "env-cmd -f .env.docker cypress open --config-file ./e2e/support/cypress.config.js --e2e",
-    "cypress:run": "env-cmd -f .env.docker cypress run --config-file ./e2e/support/cypress.config.js"
+    "docker:down": "docker compose --env-file .env.docker down --rmi all --volumes"
   }
 }

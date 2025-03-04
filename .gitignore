@@ -1,9 +1,37 @@
+# environment
 .env
 .env.docker
-.idea
-cypress
+.env*.local
+
+# local dist
 local-dist/*
 !local-dist/.gitkeep
+
+# dependencies
 node_modules
-client/node_modules
-server/node_modules
+
+# testing
+cypress
+
+# dist
+out
+dist
+dist-ssr
+*.local
+build
+
+# editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.pem
+
+# debug
+*.log
+npm-debug.log*
