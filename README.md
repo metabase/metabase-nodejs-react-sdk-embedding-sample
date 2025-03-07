@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> The repository has version branches (e.g. release-x.N.x) that work with the matching version of Metabase's Embedded Analytics SDK. You should use the branch that matches your Metabase version. [More info](https://www.metabase.com/docs/latest/embedding/sdk/version).
+
 # Sample React application for Metabase's Embedded analytics SDK
 
 A quick app to kick the tires on the [Embedded analytics SDK](https://www.metabase.com/docs/latest/embedding/sdk/introduction).
