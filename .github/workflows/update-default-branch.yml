@@ -29,7 +29,8 @@ jobs:
         if: steps.check_target_branch.outputs.target_branch_exists == 'false'
         run: |
           echo "Creating branch $TARGET_BRANCH from main"
-          git checkout -b "$TARGET_BRANCH"
+          git fetch origin main
+          git checkout -b "$TARGET_BRANCH" origin/main
           git push origin "$TARGET_BRANCH"
 
       - name: Get current default branch
