@@ -1,0 +1,51 @@
+name: Check the Metabase major version and update the default branch
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # every hour
+  workflow_dispatch:
+
+jobs:
+  update_release_branch:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    env:
+      # The CURRENT_VERSION is the org-level variable holding the major version of the Metabase
+      TARGET_BRANCH: release-x.${{ vars.CURRENT_VERSION }}.x
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if target branch exists
+        id: check_target_branch
+        run: |
+          if git ls-remote --exit-code --heads origin "$TARGET_BRANCH"; then
+            echo "target_branch_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "target_branch_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create target branch if it doesn't exist
+        if: steps.check_target_branch.outputs.target_branch_exists == 'false'
+        run: |
+          echo "Creating branch $TARGET_BRANCH from main"
+          git fetch origin main
+          git checkout -b "$TARGET_BRANCH" origin/main
+          git push origin "$TARGET_BRANCH"
+
+      - name: Get current default branch
+        id: get_default_branch
+        run: |
+          current_default=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} | jq -r .default_branch)
+          echo "current_default_branch=$current_default" >> $GITHUB_OUTPUT
+          echo "Current default branch is: $current_default"
+
+      - name: Set target branch as default branch if needed
+        if: steps.get_default_branch.outputs.current_default_branch != env.TARGET_BRANCH
+        run: |
+          echo "Setting $TARGET_BRANCH as default branch"
+          curl -s -X PATCH \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"default_branch\": \"$TARGET_BRANCH\"}" \
+            https://api.github.com/repos/${{ github.repository }}
