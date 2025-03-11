@@ -1,5 +1,5 @@
 > [!IMPORTANT]  
-> **To use your own Metabase**, use the release branch that matches your Metabase Enterprise Edition's major version. For example, if you're using Metabase 1.53.x, use the `release-x.53.x` branch. [More info](https://www.metabase.com/docs/latest/embedding/sdk/version).
+> **To use your own Metabase**, use the release branch that matches your Metabase Enterprise Edition's major version. For example, if you're using Metabase 1.53.x, use the `53-stable` branch. [More info](https://www.metabase.com/docs/latest/embedding/sdk/version).
 > 
 > **To spin up a new Metabase**, you can use any version branch and run the sample app in the Docker container with the corresponding version of Metabase. You'll need a Pro/Enterprise token, which you can get with a [free trial of Pro](https://www.metabase.com/pricing/).
 
