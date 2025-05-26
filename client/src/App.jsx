@@ -4,8 +4,10 @@ import {
   MetabaseProvider,
   InteractiveQuestion,
   defineMetabaseAuthConfig,
-  defineMetabaseTheme,
+  defineMetabaseTheme, InteractiveDashboard,
 } from "@metabase/embedding-sdk-react";
+import { useMemo } from "react";
+import { Redirect, Route, Switch, useSearchParams } from "wouter"
 
 // Configuration
 const config = defineMetabaseAuthConfig({
@@ -13,7 +15,8 @@ const config = defineMetabaseAuthConfig({
   authProviderUri: import.meta.env.VITE_AUTH_PROVIDER_URI,
 });
 
-const questionId = 24;
+const defaultQuestionId = 24;
+const defaultDashboardId = 1;
 
 const theme = defineMetabaseTheme({
   // Specify a font to use from the set of fonts supported by Metabase.
@@ -63,10 +66,22 @@ const theme = defineMetabaseTheme({
 });
 
 function App() {
+  const [searchParams] = useSearchParams()
+
+  const { locale, questionId, dashboardId } = useMemo(() => ({
+    locale: searchParams.get('locale') ?? null,
+    questionId: parseInt(searchParams.get('questionId') || defaultQuestionId),
+    dashboardId: parseInt(searchParams.get('dashboardId') || defaultDashboardId),
+  }), [searchParams])
+
   return (
     <div className="App" style={{ width: "1200px", height: "800px" }}>
-      <MetabaseProvider authConfig={config} theme={theme}>
-        <InteractiveQuestion questionId={questionId} />
+      <MetabaseProvider authConfig={config} theme={theme} locale={locale}>
+        <Switch>
+            <Route path="/" component={() => <Redirect to="/interactive-question" />} />
+            <Route path="/interactive-question" component={() => <InteractiveQuestion questionId={questionId} />} />
+            <Route path="/interactive-dashboard" component={() => <InteractiveDashboard dashboardId={dashboardId} withDownloads />} />
+        </Switch>
       </MetabaseProvider>
     </div>
   );
