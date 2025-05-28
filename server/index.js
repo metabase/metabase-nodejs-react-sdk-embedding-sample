@@ -1,21 +1,20 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const dotenv = require('dotenv').config({ path: '../.env' });
-const cors = require('cors');
+const dotenv = require("dotenv").config({ path: "../.env" });
+const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
-app.get('/', (req, res) => {
-  res.send('Hello from our server!')
-})
+app.get("/", (req, res) => {
+  res.send("Hello from our server!");
+});
 
-const AUTH_PROVIDER_PORT = process.env.AUTH_PROVIDER_PORT
-const METABASE_INSTANCE_URL = process.env.METABASE_INSTANCE_URL
-const METABASE_JWT_SHARED_SECRET = process.env.METABASE_JWT_SHARED_SECRET
+const AUTH_PROVIDER_PORT = process.env.AUTH_PROVIDER_PORT;
+const METABASE_INSTANCE_URL = process.env.METABASE_INSTANCE_URL;
+const METABASE_JWT_SHARED_SECRET = process.env.METABASE_JWT_SHARED_SECRET;
 
-app.use(cors({ credentials: true, origin:true })); //https://stackoverflow.com/a/66437447
+app.use(cors({ credentials: true, origin: true })); //https://stackoverflow.com/a/66437447
 
 app.get("/sso/metabase", async (req, res) => {
-
   // Usually, you would grab the user from the current session
   // Here it is hardcoded for demonstration purposes
   // Example:
@@ -24,15 +23,15 @@ app.get("/sso/metabase", async (req, res) => {
     email: "rene@example.com",
     firstName: "Rene",
     lastName: "Descartes",
-    group: "Customer"
-  }
+    group: "Customer",
+  };
 
   if (!user) {
     console.log("no user");
     return res.status(401).json({
-      status: 'error',
-      message: 'not authenticated',
-    })
+      status: "error",
+      message: "not authenticated",
+    });
   }
 
   const token = jwt.sign(
@@ -44,28 +43,36 @@ app.get("/sso/metabase", async (req, res) => {
       exp: Math.round(Date.now() / 1000) + 60 * 10, // 10 minutes expiration
     },
     // This is the JWT signing secret in your Metabase JWT authentication setting
-    METABASE_JWT_SHARED_SECRET
-  )
-  const ssoUrl = `${METABASE_INSTANCE_URL}/auth/sso?token=true&jwt=${token}`
-  console.log('Hitting MB SSO endpoint', ssoUrl);
+    METABASE_JWT_SHARED_SECRET,
+  );
+
+  if (req.query.response === "json") {
+    return res
+      .status(200)
+      .set("Content-Type", "application/json")
+      .end({ jwt: token });
+  }
+
+  const ssoUrl = `${METABASE_INSTANCE_URL}/auth/sso?token=true&jwt=${token}`;
+  console.log("Hitting MB SSO endpoint", ssoUrl);
 
   try {
-    const response = await fetch(ssoUrl, { method: 'GET' })
-    const session = await response.text()
+    const response = await fetch(ssoUrl, { method: "GET" });
+    const session = await response.text();
 
-    console.log("Received session", session)
-    return res.status(200).set("Content-Type", "application/json").end(session)
+    console.log("Received session", session);
+    return res.status(200).set("Content-Type", "application/json").end(session);
   } catch (error) {
     if (error instanceof Error) {
       res.status(401).json({
-        status: 'error',
-        message: 'authentication failed',
+        status: "error",
+        message: "authentication failed",
         error: error.message,
-      })
+      });
     }
   }
-})
+});
 
 app.listen(AUTH_PROVIDER_PORT, () => {
-  console.log(`server listening on port ${AUTH_PROVIDER_PORT}`)
-})
+  console.log(`server listening on port ${AUTH_PROVIDER_PORT}`);
+});
