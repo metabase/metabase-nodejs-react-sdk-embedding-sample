@@ -10,7 +10,6 @@ import {
 // Configuration
 const config = defineMetabaseAuthConfig({
   metabaseInstanceUrl: import.meta.env.VITE_METABASE_INSTANCE_URL,
-  authProviderUri: import.meta.env.VITE_AUTH_PROVIDER_URI,
 });
 
 const questionId = 24;
