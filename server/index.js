@@ -50,7 +50,7 @@ app.get("/sso/metabase", async (req, res) => {
     return res
       .status(200)
       .set("Content-Type", "application/json")
-      .end({ jwt: token });
+      .send({ jwt: token });
   }
 
   const ssoUrl = `${METABASE_INSTANCE_URL}/auth/sso?token=true&jwt=${token}`;
