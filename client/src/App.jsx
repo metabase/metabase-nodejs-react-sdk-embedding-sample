@@ -9,7 +9,7 @@ import {
 
 // Configuration
 const config = defineMetabaseAuthConfig({
-  metabaseInstanceUrl: import.meta.env.VITE_METABASE_INSTANCE_URL,
+  metabaseInstanceUrl: 'http://localhost:4300',
 });
 
 const questionId = 24;
