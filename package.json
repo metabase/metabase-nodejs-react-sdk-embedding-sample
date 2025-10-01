@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "scripts": {
     "start": "npm run docker:up -- --build",
-    "rm": "npm run docker:down -- --volumes --rmi all --remove-orphans",
     "docker:up": "docker compose --env-file .env.docker up",
-    "docker:down": "docker compose --env-file .env.docker down"
+    "docker:e2e:up": "yarn docker:up",
+    "docker:local-dist:up": "docker compose -f docker-compose.yml -f docker-compose.local-dist.yml --env-file .env.docker up",
+    "docker:down": "docker compose --env-file .env.docker down",
+    "docker:rm": "yarn docker:down --rmi all --volumes"
   }
 }

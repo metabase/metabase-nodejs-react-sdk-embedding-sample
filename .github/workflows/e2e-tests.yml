@@ -28,7 +28,7 @@ jobs:
       - name: Run Sample App in Docker
         run: |
           cp .env.docker.example .env.docker &&
-          npm run docker:up -- --wait
+          npm run docker:e2e:up -- --wait
 
       - name: Install Chrome v111
         uses: browser-actions/setup-chrome@v1
