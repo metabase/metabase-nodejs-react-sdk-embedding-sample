@@ -1,10 +1,8 @@
 services:
   metabase:
-    build:
-      context: .
-      dockerfile: metabase/Dockerfile
+    image: metabase/metabase-enterprise:v1.55.x
     environment:
-      MB_CONFIG_FILE_PATH: "./app/init-config.yml"
+      MB_CONFIG_FILE_PATH: /app/config.yml
       MB_JETTY_PORT: "${MB_PORT}"
       MB_EDITION: "ee"
       MB_SITE_URL: "http://localhost:${MB_PORT}/"
@@ -19,6 +17,8 @@ services:
       retries: 10
     ports:
       - "${MB_PORT}:${MB_PORT}"
+    volumes:
+      - ./metabase/config.yml:/app/config.yml
 
   client:
     depends_on:
@@ -35,6 +35,11 @@ services:
     environment:
       CLIENT_PORT: "${CLIENT_PORT}"
       VITE_METABASE_INSTANCE_URL: "http://localhost:${MB_PORT}"
+    healthcheck:
+      test: curl --fail -X GET -I "http://localhost:${CLIENT_PORT}/" || exit 1
+      interval: 2s
+      timeout: 2s
+      retries: 5
     ports:
       - "${CLIENT_PORT}:${CLIENT_PORT}"
     volumes:
