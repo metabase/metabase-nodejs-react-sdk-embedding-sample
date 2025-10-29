@@ -17,9 +17,7 @@ jobs:
     timeout-minutes: 10
     name: e2e-tests
     env:
-      PREMIUM_EMBEDDING_TOKEN: ${{ secrets.STAGING_MB_PRO_SELF_HOSTED_TOKEN }}
-      MB_RUN_MODE: e2e
-      METASTORE_DEV_SERVER_URL: ${{ secrets.METASTORE_DEV_SERVER_URL }}
+      PREMIUM_EMBEDDING_TOKEN: ${{ secrets.MB_PRO_SELF_HOSTED_TOKEN }}
     permissions:
       id-token: write
       contents: read
@@ -31,6 +29,10 @@ jobs:
         run: |
           cp .env.docker.example .env.docker &&
           npm run docker:e2e:up -- --wait
+
+      - name: Show Docker Logs on Failure
+        if: failure()
+        run: docker logs metabase-nodejs-react-sdk-embedding-sample-metabase-1 --tail=100
 
       - name: Install Chrome v111
         uses: browser-actions/setup-chrome@v1
