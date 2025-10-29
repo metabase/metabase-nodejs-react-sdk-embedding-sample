@@ -1,4 +1,5 @@
-.idea
-node_modules
-docker-compose.*
+**/.idea
+**/node_modules
+**/docker-compose.*
 .dockerignore
+.claude
