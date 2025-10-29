@@ -3,8 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start": "npm run docker:up",
+    "start": "npm run docker:up -- --build",
     "docker:up": "docker compose --env-file .env.docker up",
-    "docker:down": "docker compose --env-file .env.docker down --rmi all --volumes"
+    "docker:e2e:up": "yarn docker:up",
+    "docker:local-dist:up": "docker compose -f docker-compose.yml -f docker-compose.local-dist.yml --env-file .env.docker up",
+    "docker:down": "docker compose --env-file .env.docker down",
+    "docker:rm": "yarn docker:down --rmi all --volumes"
   }
 }
