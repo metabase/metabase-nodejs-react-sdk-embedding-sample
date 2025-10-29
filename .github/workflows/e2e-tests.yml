@@ -30,10 +30,6 @@ jobs:
           cp .env.docker.example .env.docker &&
           npm run docker:e2e:up -- --wait
 
-      - name: Show Docker Logs on Failure
-        if: failure()
-        run: docker logs metabase-nodejs-react-sdk-embedding-sample-metabase-1 --tail=100
-
       - name: Install Chrome v111
         uses: browser-actions/setup-chrome@v1
         with:
