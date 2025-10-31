@@ -30,7 +30,7 @@ const theme = defineMetabaseTheme({
 
   // Match your application's color scheme
   colors: {
-    brand: "#2196F3",
+    brand: "red",
     "text-primary": "#2C3E50",
     "text-secondary": "#607D8B",
     "text-tertiary": "#78909C",
