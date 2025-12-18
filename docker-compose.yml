@@ -23,11 +23,11 @@ services:
       - ./metabase/config.yml:/app/config.yml
 
   client:
-    depends_on:
-      metabase:
-        condition: service_healthy
-      server:
-        condition: service_started
+    # depends_on:
+    #   metabase:
+    #     condition: service_healthy
+    #   server:
+    #     condition: service_started
     build:
       context: .
       dockerfile: ./client/Dockerfile

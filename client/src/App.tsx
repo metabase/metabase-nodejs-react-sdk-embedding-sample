@@ -1,5 +1,3 @@
-/// <reference types="vite/client" />
-
 import {
   MetabaseProvider,
   InteractiveQuestion,
@@ -72,3 +70,4 @@ function App() {
 }
 
 export default App;
+
