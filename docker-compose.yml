@@ -1,6 +1,6 @@
 services:
   metabase:
-    image: metabase/metabase-enterprise:v1.56.x
+    image: metabase/metabase-enterprise:v1.57.x
     environment:
       MB_CONFIG_FILE_PATH: /app/config.yml
       MB_JETTY_PORT: "${MB_PORT}"
