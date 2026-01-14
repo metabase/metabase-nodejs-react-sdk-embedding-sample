@@ -1,8 +1,10 @@
+import { useState } from "react";
 import {
   MetabaseProvider,
   InteractiveQuestion,
   defineMetabaseAuthConfig,
   defineMetabaseTheme,
+  MetabaseClickActionPluginsConfig,
 } from "@metabase/embedding-sdk-react";
 
 // Configuration
@@ -10,7 +12,7 @@ const config = defineMetabaseAuthConfig({
   metabaseInstanceUrl: import.meta.env.VITE_METABASE_INSTANCE_URL,
 });
 
-const questionId = 24;
+const questionId = 1;
 
 const theme = defineMetabaseTheme({
   // Specify a font to use from the set of fonts supported by Metabase.
@@ -60,11 +62,37 @@ const theme = defineMetabaseTheme({
 });
 
 function App() {
+  const [item, setItem] = useState<string | null>(null);
+
+  const mapQuestionClickActions: MetabaseClickActionPluginsConfig = (
+    _,
+    clicked,
+  ) => {
+    return {
+      onClick: () => {
+        if (clicked.column?.name === "PRODUCT_ID") {
+          setItem(String(clicked.data?.PRODUCT_ID));
+        }
+      },
+    };
+  };
+
   return (
     <div className="App" style={{ width: "1200px", height: "800px" }}>
       <MetabaseProvider authConfig={config} theme={theme}>
-        <InteractiveQuestion questionId={questionId} />
+        <InteractiveQuestion
+          questionId={questionId}
+          plugins={{
+            mapQuestionClickActions,
+          }}
+        />
       </MetabaseProvider>
+      {item && (
+        <div>
+          <h1>Currently selected item</h1>
+          <p>{item}</p>
+        </div>
+      )}
     </div>
   );
 }
