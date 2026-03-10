@@ -10,7 +10,7 @@ const config = defineMetabaseAuthConfig({
   metabaseInstanceUrl: import.meta.env.VITE_METABASE_INSTANCE_URL,
 });
 
-const questionId = 24;
+const questionId = "kgAiQ87dLKJmTnOaTeVsc";
 
 const theme = defineMetabaseTheme({
   // Specify a font to use from the set of fonts supported by Metabase.
