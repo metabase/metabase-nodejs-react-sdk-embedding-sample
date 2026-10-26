@@ -7,5 +7,6 @@ module.exports = defineConfig({
     supportFile: path.resolve(path.join(__dirname, './cypress.js')),
     specPattern: path.resolve(path.join(__dirname, '../test/**/*.cy.spec.js')),
     defaultBrowser: process.env.CYPRESS_BROWSER ?? "chrome",
+    retries: { runMode: 1, openMode: 0 },
   },
 })
